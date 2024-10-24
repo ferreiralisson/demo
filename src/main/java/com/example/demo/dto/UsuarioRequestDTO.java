@@ -4,6 +4,7 @@ public class UsuarioRequestDTO {
     private String email;
     private String nome;
     private String senha;
+    private String cep;
 
     public String getEmail() {
         return email;
@@ -27,5 +28,13 @@ public class UsuarioRequestDTO {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }
