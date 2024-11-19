@@ -4,6 +4,8 @@ import com.example.demo.dto.UsuarioRequestDTO;
 import com.example.demo.dto.UsuarioResponseDTO;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +36,8 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios(){
-        return ResponseEntity.ok(service.listarUsuarios());
+    public ResponseEntity<Page<UsuarioResponseDTO>> listarUsuarios(Pageable pageable){
+        return ResponseEntity.ok(service.listarUsuarios(pageable));
     }
 
     @PatchMapping("{id}")

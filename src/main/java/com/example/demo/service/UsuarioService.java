@@ -2,15 +2,15 @@ package com.example.demo.service;
 
 import com.example.demo.dto.UsuarioRequestDTO;
 import com.example.demo.dto.UsuarioResponseDTO;
-import com.example.demo.model.Endereco;
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -40,11 +40,9 @@ public class UsuarioService {
         repository.save(usuario);
     }
 
-    public List<UsuarioResponseDTO> listarUsuarios() {
-        return repository.findAll()
-                .stream()
-                .map(this::getUsuarioResponse)
-                .collect(Collectors.toList());
+    public Page<UsuarioResponseDTO> listarUsuarios(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(this::getUsuarioResponse);
     }
 
     private UsuarioResponseDTO getUsuarioResponse(Usuario usuario) {
